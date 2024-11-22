@@ -1,0 +1,4 @@
+# requirements.txt
+
+PyQt6==6.4.0  # Qt6 GUI framework
+pyyaml>=5.4.1 #yaml document creator
