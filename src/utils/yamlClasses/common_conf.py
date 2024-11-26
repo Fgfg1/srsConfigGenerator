@@ -9,10 +9,10 @@
     I am using pyyaml to create the documents and it works really well with a dict.
     All data will be stored in a dictionary.
 """
-class common_config:
+class CommonConfig:
     def __init__(self, name=None, data={}, used = False):  
         '''
-        The common_config class is designed to manage configuration parameters. The 'used' flag is set by default to False. 
+        The CommonComfig class is designed to manage configuration parameters. The 'used' flag is set by default to False. 
 
         Parameters :
             name (str) : Name of the configuration item defaults to None
