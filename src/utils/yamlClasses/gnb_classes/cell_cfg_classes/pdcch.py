@@ -1,4 +1,4 @@
-from common_conf import CommonConfig
+from src.utils.yamlClasses.common_conf import CommonConfig
 from .pdcch_classes.common import Common
 from .pdcch_classes.dedicated import Dedicated
 
@@ -7,20 +7,20 @@ class Pdcch(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Sub-configurations
-        self._common = Common()
-        self._dedicated = Dedicated()
+        self.__common = Common()
+        self.__dedicated = Dedicated()
 
     # Getters and setters for 'common' sub-configuration
     @property
     def common(self):
         """Access the common PDCCH configuration."""
-        return self._common
+        return self.__common
 
     @common.setter
     def common(self, value):
         """Set the common PDCCH configuration."""
         if isinstance(value, Common):
-            self._common = value
+            self.__common = value
         else:
             raise ValueError("common must be an instance of Common.")
 
@@ -28,35 +28,35 @@ class Pdcch(CommonConfig):
     @property
     def dedicated(self):
         """Access the dedicated PDCCH configuration."""
-        return self._dedicated
+        return self.__dedicated
 
     @dedicated.setter
     def dedicated(self, value):
         """Set the dedicated PDCCH configuration."""
         if isinstance(value, Dedicated):
-            self._dedicated = value
+            self.__dedicated = value
         else:
             raise ValueError("dedicated must be an instance of Dedicated.")
 
     # Utility methods for managing sub-configurations
     def update_common_config(self, key, value):
         """Update a specific parameter in the common configuration."""
-        if hasattr(self._common, key):
-            setattr(self._common, key, value)
+        if hasattr( self._common, key):
+            setattr( self._common, key, value)
         else:
             raise KeyError(f"The common configuration has no attribute '{key}'.")
 
     def update_dedicated_config(self, key, value):
         """Update a specific parameter in the dedicated configuration."""
-        if hasattr(self._dedicated, key):
-            setattr(self._dedicated, key, value)
+        if hasattr( self._dedicated, key):
+            setattr( self._dedicated, key, value)
         else:
             raise KeyError(f"The dedicated configuration has no attribute '{key}'.")
 
     def reset_common_config(self):
         """Reset the common configuration to a new instance."""
-        self._common = Common()
+        self.__common = Common()
 
     def reset_dedicated_config(self):
         """Reset the dedicated configuration to a new instance."""
-        self._dedicated = Dedicated()
+        self.__dedicated = Dedicated()

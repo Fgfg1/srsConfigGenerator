@@ -10,7 +10,7 @@
     All data will be stored in a dictionary.
 """
 class CommonConfig:
-    def __init__(self, name=None, data={}, used = False):  
+    def __init__(self, name=None, data:dict = {}, used = False, variables:list = []):  
         '''
         The CommonComfig class is designed to manage configuration parameters. The 'used' flag is set by default to False. 
 
@@ -18,30 +18,32 @@ class CommonConfig:
             name (str) : Name of the configuration item defaults to None
             data (dict) : Dictionary containing data for configuring some common parameters
             used (bool) : Indicates whether this configuration has been used or not, defaults to False
+            variables (list) : List of all variables and sub classes used in 
         '''
-        self.name = name # used as they key in the key value pair
-        self.data = data 
-        self.used = used   
+        self._name = name # used as they key in the key value pair
+        self._data = data  # this will always be set up for printing a yaml file
+        self._used = used
+        self._variables = variables   
  
 
     # Getters and setters for each instance variable
     def get_name(self) -> str:
-        return self.name
+        return self._name
   
     def get_data(self): # return type should be dictionary
-        if self.name == None:
-            return self.data
+        if self._name == None:
+            return self._data
         else:
-            return {self.name : self.data}
+            return {self._name : self._data}
 
     def is_used(self) -> bool: 
-        return self.used   
+        return self._used   
 
     def set_name(self, name: str):
-        self.name = name
+        self._name = name
   
     def set_data(self, data): # input type should be a dictionary
-        self.data = data
+        self._data = data
    
     def set_used(self, used: bool): 
-        self.used = used 
+        self._used = used 

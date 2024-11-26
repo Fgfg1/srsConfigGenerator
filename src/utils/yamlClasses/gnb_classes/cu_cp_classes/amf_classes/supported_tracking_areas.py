@@ -1,5 +1,5 @@
-from config_item import ConfigItem
-from common_conf import CommonConfig
+from src.utils.yamlClasses.config_item import ConfigItem
+from src.utils.yamlClasses.common_conf import CommonConfig
 from .supported_tracking_areas_classes.plmn_list import Plmn_list
 
 class Supported_tracking_areas(CommonConfig):
@@ -7,7 +7,7 @@ class Supported_tracking_areas(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
-        self.tac = ConfigItem(
+        self._tac = ConfigItem(
             key="tac",
             value=7,
             comment="Tracking Area Code (TAC) for supported tracking areas",
@@ -15,13 +15,13 @@ class Supported_tracking_areas(CommonConfig):
         )
 
         # Sub-configuration
-        self.plmn_list = Plmn_list()
+        self._plmn_list = Plmn_list()
 
     # Getter and setter for ConfigItem
     @property
     def tac(self):
-        return self.tac.value
+        return self._tac.value
 
     @tac.setter
     def tac(self, value):
-        self.tac.set_value(value)
+        self._tac.set_value(value)

@@ -18,107 +18,154 @@ from .gnb_classes.log import Log
 from .gnb_classes.pcap import Pcap
 from .gnb_classes.metrics import Metrics
 
-from config_item import ConfigItem
-from .common_conf import CommonConfig
+from src.utils.yamlClasses.config_item import ConfigItem
+from src.utils.yamlClasses.common_conf import CommonConfig
 
 
 class Gnb(CommonConfig):
-    def __init__(self, name="GnbConfig", data=None, used=False):
+    def __init__(self, name=None, data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # General configuration items
-        self.gnb_id = ConfigItem(
+        self._gnb_id = ConfigItem(
             key="gnb_id",
             value=411, 
             comment="Optional UINT (411). Sets the numerical ID associated with the gNB.", 
             used=False
         )
-        self.gnb_id_bit_length = ConfigItem(
+        self._gnb_id_bit_length = ConfigItem(
             key="gnb_id_bit_length", 
             value=22, 
             comment="Optional UNIT (22). Sets the bit length of the gnb_id above. Format: integer between [22 - 32]", used=False
         )
-        self.ran_node_name = ConfigItem(
+        self._ran_node_name = ConfigItem(
             key="ran_node_name", value="srsgnb01", comment="RAN Node Name", used=False
         )
-        self.gnb_du_id = ConfigItem(
+        self._gnb_du_id = ConfigItem(
             key="gnb_du_id", value=0, comment="GNB DU ID", used=False
         )
-        self.qos = ConfigItem(
+        # might be a class in the future
+        self._qos = ConfigItem(
             key="qos", value=None, comment="Quality of Service configuration", used=False
         )
-        self.srbs = ConfigItem(
+        # might be a class in the future
+        self._srbs = ConfigItem(
             key="srbs", value=None, comment="SRB configuration", used=False
         )
 
         # Sub-modules
-        self.cells = Cells()
-        self.cu_cp = Cu_cp()
-        self.cu_up = Cu_up()
-        self.du = Du()
-        self.cell_cfg = Cell_cfg()
-        self.e2 = E2()
-        self.ntn = Ntn()
-        self.ru_ofh = Ru_ofh()
-        self.ru_sdr = Ru_sdr()
-        self.ru_dummy = Ru_dummy()
-        self.fapi = Fapi()
-        self.hal = Hal()
-        self.buffer_pool = Buffer_pool()
-        self.expert_phy = Expert_phy()
-        self.expert_execution = Expert_execution()
-        self.test_mode = Test_mode()
-        self.log = Log()
-        self.pcap = Pcap()
-        self.metrics = Metrics()
+        self._cells = Cells()
+        self._cu_cp = Cu_cp()
+        self._cu_up = Cu_up()
+        self._du = Du()
+        self._cell_cfg = Cell_cfg()
+        self._e2 = E2()
+        self._ntn = Ntn()
+        self._ru_ofh = Ru_ofh()
+        self._ru_sdr = Ru_sdr()
+        self._ru_dummy = Ru_dummy()
+        self._fapi = Fapi()
+        self._hal = Hal()
+        self._buffer_pool = Buffer_pool()
+        self._expert_phy = Expert_phy()
+        self._expert_execution = Expert_execution()
+        self._test_mode = Test_mode()
+        self._log = Log()
+        self._pcap = Pcap()
+        self._metrics = Metrics()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._gnb_id,
+            self._gnb_id_bit_length,
+            self._ran_node_name,
+            self._gnb_du_id,
+            self._cells,
+            self._qos,
+            self._srbs,
+            self._cu_cp,
+            self._cu_up,
+            self._du,
+            self._cell_cfg,
+            self._e2,
+            self._ntn,
+            self._ru_ofh,
+            self._ru_sdr,
+            self._ru_dummy,
+            self._fapi,
+            self._hal,
+            self._buffer_pool,
+            self._expert_phy,
+            self._expert_execution,
+            self._test_mode,
+            self._log,
+            self._pcap,
+            self._metrics
+        ]
 
     # Expose ConfigItem attributes via properties for compatibility
     @property
     def gnb_id(self):
-        return self.gnb_id.value
+        return self._gnb_id.value
 
     @gnb_id.setter
     def gnb_id(self, value):
-        self.gnb_id.set_value(value)
+        self._gnb_id.set_value(value)
 
     @property
     def gnb_id_bit_length(self):
-        return self.gnb_id_bit_length.value
+        return self._gnb_id_bit_length.value
 
     @gnb_id_bit_length.setter
     def gnb_id_bit_length(self, value):
-        self.gnb_id_bit_length.set_value(value)
+        self._gnb_id_bit_length.set_value(value)
 
     @property
     def ran_node_name(self):
-        return self.ran_node_name.value
+        return self._ran_node_name.value
 
     @ran_node_name.setter
     def ran_node_name(self, value):
-        self.ran_node_name.set_value(value)
+        self._ran_node_name.set_value(value)
 
     @property
     def gnb_du_id(self):
-        return self.gnb_du_id.value
+        return self._gnb_du_id.value
 
     @gnb_du_id.setter
     def gnb_du_id(self, value):
-        self.gnb_du_id.set_value(value)
+        self._gnb_du_id.set_value(value)
 
     @property
     def qos(self):
-        return self.qos.value
+        return self._qos.value
 
     @qos.setter
     def qos(self, value):
-        self.qos.set_value(value)
+        self._qos.set_value(value)
 
     @property
     def srbs(self):
-        return self.srbs.value
+        return self._srbs.value
 
     @srbs.setter
     def srbs(self, value):
-        self.srbs.set_value(value)
+        self._srbs.set_value(value)
 
-    
+    def get_gui_data(self):
+        """
+        returns a dic of everything in the gnb so that the pyqt6 can interprite it
+        Will use the ConfgItem class as the values.
+        """
+        pass
+
+    def load_data(self, input:dict):
+        """Takes dictionary input from pyyaml and inputs all data into gnb"""
+        pass
+
+    def initalize_data(self):
+        """Uing the variabel list itterate through and add it to the """
+        for variable in self._variables:
+            if variable:
+                self._data.update(variable.get_data())
+        
