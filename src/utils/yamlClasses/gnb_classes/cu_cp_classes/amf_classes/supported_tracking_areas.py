@@ -1,27 +1,21 @@
-from src.utils.yamlClasses.config_item import ConfigItem
-from src.utils.yamlClasses.common_conf import CommonConfig
-from .supported_tracking_areas_classes.plmn_list import Plmn_list
+from src.utils.yamlClasses.common_list import CommonList
+from supported_tracking_areas_data import Supported_tracking_areas_data
 
-class Supported_tracking_areas(CommonConfig):
-    def __init__(self, name="SupportedTrackingAreasConfig", data=None, used=False):
+# Required TEXT. Sets the list of tracking areas supported by this AMF.
+
+class Supported_tracking_areas(CommonList):
+    def __init__(self, name="supported_tracking_areas", data=None, used=False):
         super().__init__(name, data or {}, used)
 
-        # Configurable attributes using ConfigItem
-        self._tac = ConfigItem(
-            key="tac",
-            value=7,
-            comment="Tracking Area Code (TAC) for supported tracking areas",
-            used=False,
-        )
+        #add inital item to list
+        self.add_item(Supported_tracking_areas_data())
 
-        # Sub-configuration
-        self._plmn_list = Plmn_list()
+    # TODO Add managment functions to create delete and edit item list.
 
-    # Getter and setter for ConfigItem
-    @property
-    def tac(self):
-        return self._tac.value
+    # TODO add deffinition to this
+    def add_tracking_area(self):
+        """Takes supported_tracking_areas_data info to add to traking area list"""
+        pass
 
-    @tac.setter
-    def tac(self, value):
-        self._tac.set_value(value)
+
+    

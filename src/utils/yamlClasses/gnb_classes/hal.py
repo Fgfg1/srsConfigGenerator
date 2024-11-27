@@ -7,6 +7,8 @@ class Hal(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional TEXT. EAL configuration parameters used to initialize DPDK.
         self._eal_args = ConfigItem(
             key="eal_args",
             value=None,
@@ -14,8 +16,14 @@ class Hal(CommonConfig):
             used=False,
         )
 
-        # Sub-configuration
+        # Sub-module
         self._bbdev_hwacc = Bbdev_hwacc()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._eal_args,
+            self._bbdev_hwacc
+        ]
 
     # Getter and setter for ConfigItem eal_args
     @property

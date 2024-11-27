@@ -11,3 +11,10 @@ class Expert_execution(CommonConfig):
         self._cell_affinities = Cell_affinities()
         self._affinities = Affinities()
         self._threads = Threads()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._cell_affinities,
+            self._affinities,
+            self._threads
+        ]

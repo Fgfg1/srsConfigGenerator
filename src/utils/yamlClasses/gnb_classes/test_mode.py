@@ -7,22 +7,45 @@ class Test_mode(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional BOOLEAN (false). Set to true to enable CU-UP test mode. Supported: [true, false].
         self._enable = ConfigItem(
             key="enable", value=False, comment="Enable CU-UP test mode", used=False
         )
+
+        # Optional BOOLEAN (false). Set to true to enable PDCP integrity testing. Supported: [true, false].
         self._integrity_enable = ConfigItem(
             key="integrity_enable", value=False, comment="Enable PDCP integrity testing", used=False
         )
+
+        # Optional BOOLEAN (false). Set to true to enable PDCP ciphering testing. Supported: [true, false].
         self._ciphering_enable = ConfigItem(
             key="ciphering_enable", value=False, comment="Enable PDCP ciphering testing", used=False
         )
+
+        # Optional UINT (2). Sets the NEA algo to use for testing. Supported: [0, 1, 2, 3].
         self._nea_algo = ConfigItem(
             key="nea_algo", value=2, comment="Sets the NEA algorithm for testing. Supported: [0, 1, 2, 3]", used=False
         )
+
+        # Optional UINT (2). Sets the NIA algo to use for testing. Supported: [1, 2, 3].
         self._nia_algo = ConfigItem(
             key="nia_algo", value=2, comment="Sets the NIA algorithm for testing. Supported: [1, 2, 3]", used=False
         )
+        
+        # Sub-modules
         self._test_ue = Test_ue()
+
+        self._variables = [
+            self._enable,
+            self._integrity_enable,
+            self._ciphering_enable,
+            self._nea_algo,
+            self._nia_algo,
+            self._test_ue
+        ]
+
+
 
     # Expose ConfigItem attributes via properties for compatibility
     @property

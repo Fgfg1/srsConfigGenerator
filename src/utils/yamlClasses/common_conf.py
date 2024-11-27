@@ -30,8 +30,8 @@ class CommonConfig:
     def get_name(self) -> str:
         return self._name
   
-    def get_data(self): # return type should be dictionary
-        if self._name == None:
+    def get_data(self, justData:bool = False): # return type should be dictionary
+        if self._name == None or justData:
             return self._data
         else:
             return {self._name : self._data}
@@ -46,4 +46,11 @@ class CommonConfig:
         self._data = data
    
     def set_used(self, used: bool): 
-        self._used = used 
+        self._used = used
+
+    def initalize_data(self):
+        """Uing the variabel list itterate through and add it to _data"""
+        for variable in self._variables:
+            # if the variable is used then add it to the _data
+            if variable.is_used():
+                self._data.update(variable.get_data())

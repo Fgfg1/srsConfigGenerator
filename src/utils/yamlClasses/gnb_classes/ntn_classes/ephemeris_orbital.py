@@ -6,42 +6,64 @@ class Ephemeris_orbital(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional FLOAT (0). Sets the semi-major axis of the satellite. Supported: [0 - 1000000000].
         self._semi_major_axis = ConfigItem(
             key="semi_major_axis",
             value=0,
             comment="Semi-major axis of the orbit",
             used=False,
         )
+
+        # Optional FLOAT (0). Sets the eccentricity of the satellite.
         self._eccentricity = ConfigItem(
             key="eccentricity",
             value=0,
             comment="Eccentricity of the orbit",
             used=False,
         )
+
+        # Optional FLOAT (0). Sets the periapsis of the satellite.
         self._periapsis = ConfigItem(
             key="periapsis",
             value=0,
             comment="Argument of periapsis of the orbit",
             used=False,
         )
+
+        # Optional FLOAT (0). Sets the longitude of the satellites angle of ascending node.
         self._longitude = ConfigItem(
             key="longitude",
             value=0,
             comment="Longitude of ascending node",
             used=False,
         )
+
+        # Optional FLOAT (0). Sets the inclination of the satellite.
         self._inclination = ConfigItem(
             key="inclination",
             value=0,
             comment="Inclination of the orbit in degrees",
             used=False,
         )
+
+        # Optional FLOAT (0). Sets the mean anomaly of the satellite.
         self._mean_anomaly = ConfigItem(
             key="mean_anomaly",
             value=0,
             comment="Mean anomaly of the orbit",
             used=False,
         )
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._semi_major_axis,
+            self._eccentricity,
+            self._periapsis,
+            self._longitude,
+            self._inclination,
+            self._mean_anomaly
+        ]
 
     # Getters and setters for ConfigItems
     @property

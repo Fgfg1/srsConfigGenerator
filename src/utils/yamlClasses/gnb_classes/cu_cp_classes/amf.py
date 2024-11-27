@@ -3,70 +3,92 @@ from src.utils.yamlClasses.common_conf import CommonConfig
 from .amf_classes.supported_tracking_areas import Supported_tracking_areas
 
 class Amf(CommonConfig):
-    def __init__(self, name="AmfConfig", data=None, used=False):
+    def __init__(self, name="AmfConfig", data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Required TEXT. Sets the IP address or hostname of the AMF. Format: IPV4 or IPV6 IP address.
         self._addr = ConfigItem(
             key="addr",
             value=None,
             comment="Address of the AMF",
-            used=False,
+            used=True,
         )
+
+        # Optional UINT. Sets the AMF port. Format: integer between [20000 - 40000].
         self._port = ConfigItem(
             key="port",
             value=38412,
             comment="Port for the AMF communication",
-            used=False,
+            used=True,
         )
+
+        # Optional TEXT. Sets local IP address to bind for N2 interface. Format: IPV4 or IPV6 IP address.
         self._bind_addr = ConfigItem(
             key="bind_addr",
             value="127.0.0.1",
             comment="Address to bind for AMF",
-            used=False,
+            used=True,
         )
+
+        # Optional TEXT. Sets network device to bind for N2 interface. Format: IPV4 or IPV6 IP address.
         self._bind_interface = ConfigItem(
             key="bind_interface",
             value="auto",
             comment="Network interface to bind for AMF",
             used=False,
         )
+
+        # Optional INT. Sets the initial retransmission timeout when creating the SCTP connection.
         self._sctp_rto_initial = ConfigItem(
             key="sctp_rto_initial",
             value=120,
             comment="Initial SCTP RTO in milliseconds",
             used=False,
         )
+
+        # Optional INT. Sets the minimum retransmission timeout for the SCTP connection.
         self._sctp_rto_min = ConfigItem(
             key="sctp_rto_min",
             value=120,
             comment="Minimum SCTP RTO in milliseconds",
             used=False,
         )
+
+        # Optional INT. Sets the maximum retransmission timeout for the SCTP connection.
         self._sctp_rto_max = ConfigItem(
             key="sctp_rto_max",
             value=500,
             comment="Maximum SCTP RTO in milliseconds",
             used=False,
         )
+
+        # Optional INT. Sets the maximum retransmission attempts for the initial SCTP connection.
         self._sctp_initial_max_attempts = ConfigItem(
             key="sctp_initial_max_attempts",
             value=3,
             comment="Maximum SCTP initialization attempts",
             used=False,
         )
+
+        # Optional INT. Sets the maximum retransmission timeout for the initial SCTP connection.
         self._sctp_max_init_timeo = ConfigItem(
             key="sctp_max_init_timeo",
             value=500,
             comment="Maximum SCTP initialization timeout in milliseconds",
             used=False,
         )
+
+        # Optional BOOLEAN. Setting to true allows the gNB to send SCTP messages as soon as possible without any Nagle-like algorithm. Supported: [false, true].
         self._sctp_nodelay = ConfigItem(
             key="sctp_nodelay",
             value=False,
             comment="Enable or disable SCTP_NODELAY option",
             used=False,
         )
+
+        # Optional BOOLEAN. Setting to true allows the gNB to run without a core. Supported: [0, 1].
         self._no_core = ConfigItem(
             key="no_core",
             value=False,
@@ -76,6 +98,22 @@ class Amf(CommonConfig):
 
         # Sub-configurations
         self._supported_tracking_areas = Supported_tracking_areas()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._addr,
+            self._port,
+            self._bind_addr,
+            self._bind_interface,
+            self._sctp_rto_initial,
+            self._sctp_rto_min,
+            self._sctp_rto_max,
+            self._sctp_initial_max_attempts,
+            self._sctp_max_init_timeo,
+            self._sctp_nodelay,
+            self._no_core,
+            self._supported_tracking_areas
+        ]
 
     # Getters and setters for ConfigItems
     @property

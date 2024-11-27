@@ -1,9 +1,14 @@
 from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
+#! Not Finished
+#! Need to move to data class and make this the management class
+
 class Cells(CommonConfig):
     def __init__(self, name="cells", data=None, used=False):
         super().__init__(name, data or {}, used)
+
+        """This class is used to overwirte defaults set in the cell_cfg on a per cell basis"""
 
         # Configurable attributes using ConfigItem
         self._pci = ConfigItem(
@@ -18,6 +23,8 @@ class Cells(CommonConfig):
             comment="Downlink Absolute Radio Frequency Channel Number (ARFCN)",
             used=False,
         )
+
+
 
     # Getters and setters for ConfigItems
     @property

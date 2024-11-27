@@ -6,12 +6,19 @@ class F1ap(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attribute using ConfigItem
+
+        # Optional INT (1000). Sets the UE context setup timeout in milliseconds.
         self._procedure_timeout = ConfigItem(
             key="procedure_timeout",
             value=1000,
             comment="Timeout for F1AP procedures in milliseconds",
             used=False,
         )
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._procedure_timeout
+        ]
 
     # Getter and setter for ConfigItem
     @property

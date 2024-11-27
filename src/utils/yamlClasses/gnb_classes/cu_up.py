@@ -7,18 +7,24 @@ class Cu_up(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional INT (2048). Sets the GTP-U queue size, in PDUs.
         self._gtpu_queue_size = ConfigItem(
             key="gtpu_queue_size",
             value=2048,
             comment="Size of the GTP-U queue",
             used=False,
         )
+
+        # Optional INT (0). Sets the GTP-U RX reordering timer (in milliseconds).
         self._gtpu_reordering_timer = ConfigItem(
             key="gtpu_reordering_timer",
             value=0,
             comment="GTP-U reordering timer in milliseconds",
             used=False,
         )
+
+        # Optional BOOLEAN (false). Enables the option to log a warning for dropped packets in GTP-U and PDCP due to full queues. Supported: [false, true].
         self._warn_on_drop = ConfigItem(
             key="warn_on_drop",
             value=False,
@@ -28,6 +34,14 @@ class Cu_up(CommonConfig):
 
         # Sub-configuration
         self._upf = Upf()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._gtpu_queue_size,
+            self._gtpu_reordering_timer,
+            self._warn_on_drop,
+            self._upf
+        ]
 
     # Getters and setters for ConfigItems
     @property

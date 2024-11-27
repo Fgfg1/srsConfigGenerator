@@ -6,30 +6,46 @@ class Upper_phy(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional TEXT (auto). Sets the PDSCH processor type. Supported: [auto, generic, concurrent, lite].
         self._pdsch_processor_type = ConfigItem(
             key="pdsch_processor_type",
             value="auto",
             comment="Type of PDSCH processor (e.g., 'auto', 'manual')",
             used=False,
         )
+
+        # Optional UINT (1). Sets the number of threads used to encode PUSCH.
         self._nof_pusch_decoder_threads = ConfigItem(
             key="nof_pusch_decoder_threads",
             value=1,
             comment="Number of threads for PUSCH decoding",
             used=False,
         )
+
+        # Optional UINT (1). Sets the number of upprt PHY threads to proccess uplink.
         self._nof_ul_threads = ConfigItem(
             key="nof_ul_threads",
             value=1,
             comment="Number of threads for uplink processing",
             used=False,
         )
+
+        # Optional UINT (1). Sets the number of upprt PHY threads to proccess downlink.
         self._nof_dl_threads = ConfigItem(
             key="nof_dl_threads",
             value=4,
             comment="Number of threads for downlink processing",
             used=False,
         )
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._pdsch_processor_type,
+            self._nof_pusch_decoder_threads,
+            self._nof_ul_threads,
+            self._nof_dl_threads
+        ]
 
     # Getters and setters for ConfigItems
     @property

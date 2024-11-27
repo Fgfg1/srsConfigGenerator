@@ -1,107 +1,27 @@
-from src.utils.yamlClasses.config_item import ConfigItem
-from src.utils.yamlClasses.common_conf import CommonConfig
+from src.utils.yamlClasses.common_list import CommonList
+from report_configs_data import Report_configs_data
 
-class Report_configs(CommonConfig):
-    def __init__(self, name="ReportConfigs", data=None, used=False):
+# Optional TEXT. Sets the list of report configurations to dynamically build a measurement configuration sent to the UEs using the below values.
+
+class Report_configs(CommonList):
+    def __init__(self, name="report_configs", data=None, used=False):
         super().__init__(name, data or {}, used)
+        
+        # TODO for the comment above, This is a per cell thing.
+
 
         # Configurable attributes using ConfigItem
-        self._report_cfg_id = ConfigItem(
-            key="report_cfg_id",
-            value=None,
-            comment="ID of the reporting configuration",
-            used=False,
-        )
-        self._report_type = ConfigItem(
-            key="report_type",
-            value=None,
-            comment="Type of reporting (e.g., 'periodic', 'event-based')",
-            used=False,
-        )
-        self._report_interval_ms = ConfigItem(
-            key="report_interval_ms",
-            value=1024,
-            comment="Interval for periodic reporting in milliseconds",
-            used=False,
-        )
-        self._a3_report_type = ConfigItem(
-            key="a3_report_type",
-            value=None,
-            comment="Type of A3 report",
-            used=False,
-        )
-        self._a3_offset_db = ConfigItem(
-            key="a3_offset_db",
-            value=None,
-            comment="Offset for A3 reporting in dB",
-            used=False,
-        )
-        self._a3_hysteresis_db = ConfigItem(
-            key="a3_hysteresis_db",
-            value=None,
-            comment="Hysteresis for A3 reporting in dB",
-            used=False,
-        )
-        self._a3_time_to_trigger_ms = ConfigItem(
-            key="a3_time_to_trigger_ms",
-            value=None,
-            comment="Time to trigger for A3 reports in milliseconds",
-            used=False,
-        )
+        self.add_item(Report_configs_data())
 
     # Getters and setters for ConfigItems
-    @property
-    def report_cfg_id(self):
-        return self._report_cfg_id.value
 
-    @report_cfg_id.setter
-    def report_cfg_id(self, value):
-        self._report_cfg_id.set_value(value)
+    # TODO: Implement this function
+    def add_report_config(self):
+        pass  # Placeholder for implementation logic
 
-    @property
-    def report_type(self):
-        return self._report_type.value
+    # TODO: Implement this function    
+    def del_report_config(self, name:str):
+        """delete based on name of report config"""
+        pass
 
-    @report_type.setter
-    def report_type(self, value):
-        self._report_type.set_value(value)
-
-    @property
-    def report_interval_ms(self):
-        return self._report_interval_ms.value
-
-    @report_interval_ms.setter
-    def report_interval_ms(self, value):
-        self._report_interval_ms.set_value(value)
-
-    @property
-    def a3_report_type(self):
-        return self._a3_report_type.value
-
-    @a3_report_type.setter
-    def a3_report_type(self, value):
-        self._a3_report_type.set_value(value)
-
-    @property
-    def a3_offset_db(self):
-        return self._a3_offset_db.value
-
-    @a3_offset_db.setter
-    def a3_offset_db(self, value):
-        self._a3_offset_db.set_value(value)
-
-    @property
-    def a3_hysteresis_db(self):
-        return self._a3_hysteresis_db.value
-
-    @a3_hysteresis_db.setter
-    def a3_hysteresis_db(self, value):
-        self._a3_hysteresis_db.set_value(value)
-
-    @property
-    def a3_time_to_trigger_ms(self):
-        return self._a3_time_to_trigger_ms.value
-
-    @a3_time_to_trigger_ms.setter
-    def a3_time_to_trigger_ms(self, value):
-        self._a3_time_to_trigger_ms.set_value(value)
+    

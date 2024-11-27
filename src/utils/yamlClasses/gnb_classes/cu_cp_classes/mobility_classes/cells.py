@@ -1,139 +1,25 @@
-from src.utils.yamlClasses.config_item import ConfigItem
-from src.utils.yamlClasses.common_conf import CommonConfig
-from .cells_classes.ncells import Ncells
+from src.utils.yamlClasses.common_list import CommonList
+from cells_data import CellsData
 
-class Cells(CommonConfig):
+'''
+This is the creator of all cells info and everything should relate back to this.
+(or at least that is what I believe)
+'''
+
+class Cells(CommonList):
     def __init__(self, name="CellsConfig", data=None, used=False):
         super().__init__(name, data or {}, used)
 
-        # Configurable attributes using ConfigItem
-        self._nr_cell_id = ConfigItem(
-            key="nr_cell_id",
-            value=None,
-            comment="NR Cell ID",
-            used=False,
-        )
-        self._periodic_report_cfg_id = ConfigItem(
-            key="periodic_report_cfg_id",
-            value=None,
-            comment="Periodic report configuration ID",
-            used=False,
-        )
-        self._gnb_id = ConfigItem(
-            key="gnb_id",
-            value=None,
-            comment="gNB ID for the cell",
-            used=False,
-        )
-        self._ssb_arfcn = ConfigItem(
-            key="ssb_arfcn",
-            value=None,
-            comment="SSB ARFCN (Absolute Radio Frequency Channel Number)",
-            used=False,
-        )
-        self._band = ConfigItem(
-            key="band",
-            value=None,
-            comment="Frequency band for the cell",
-            used=False,
-        )
-        self._ssb_scs = ConfigItem(
-            key="ssb_scs",
-            value=None,
-            comment="Subcarrier spacing for SSB",
-            used=False,
-        )
-        self._ssb_period = ConfigItem(
-            key="ssb_period",
-            value=None,
-            comment="Periodicity of SSB transmission",
-            used=False,
-        )
-        self._ssb_offset = ConfigItem(
-            key="ssb_offset",
-            value=None,
-            comment="Offset for SSB transmission",
-            used=False,
-        )
-        self._ssb_duration = ConfigItem(
-            key="ssb_duration",
-            value=None,
-            comment="Duration of the SSB transmission",
-            used=False,
-        )
+        # provide inital data in items list
 
-        # Sub-configuration
-        self._ncells = Ncells()
+        self.add_item(CellsData())
 
-    # Getters and setters for ConfigItems
-    @property
-    def nr_cell_id(self):
-        return self._nr_cell_id.value
+    # Add managment functions to create delete and edit item list.
 
-    @nr_cell_id.setter
-    def nr_cell_id(self, value):
-        self._nr_cell_id.set_value(value)
-
-    @property
-    def periodic_report_cfg_id(self):
-        return self._periodic_report_cfg_id.value
-
-    @periodic_report_cfg_id.setter
-    def periodic_report_cfg_id(self, value):
-        self._periodic_report_cfg_id.set_value(value)
-
-    @property
-    def gnb_id(self):
-        return self._gnb_id.value
-
-    @gnb_id.setter
-    def gnb_id(self, value):
-        self._gnb_id.set_value(value)
-
-    @property
-    def ssb_arfcn(self):
-        return self._ssb_arfcn.value
-
-    @ssb_arfcn.setter
-    def ssb_arfcn(self, value):
-        self._ssb_arfcn.set_value(value)
-
-    @property
-    def band(self):
-        return self._band.value
-
-    @band.setter
-    def band(self, value):
-        self._band.set_value(value)
-
-    @property
-    def ssb_scs(self):
-        return self._ssb_scs.value
-
-    @ssb_scs.setter
-    def ssb_scs(self, value):
-        self._ssb_scs.set_value(value)
-
-    @property
-    def ssb_period(self):
-        return self._ssb_period.value
-
-    @ssb_period.setter
-    def ssb_period(self, value):
-        self._ssb_period.set_value(value)
-
-    @property
-    def ssb_offset(self):
-        return self._ssb_offset.value
-
-    @ssb_offset.setter
-    def ssb_offset(self, value):
-        self._ssb_offset.set_value(value)
-
-    @property
-    def ssb_duration(self):
-        return self._ssb_duration.value
-
-    @ssb_duration.setter
-    def ssb_duration(self, value):
-        self._ssb_duration.set_value(value)
+    # TODO add deffinition to this
+    def add_cell(self):
+        """Takes CellsData info to add to cells list"""
+        pass
+   
+   # TODO add communication functions between this class and report_configs 
+   # and other classes that need to know about the cells information 

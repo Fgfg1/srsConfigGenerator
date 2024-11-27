@@ -13,3 +13,13 @@ class Threads(CommonConfig):
         self._upper_phy = Upper_phy()
         self._lower_phy = Lower_phy()
         self._ofh = Ofh()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._non_rt,
+            self._upper_phy,
+            self._lower_phy,
+            self._ofh
+        ]
+
+    #TODO add getters and setters for the thread classes

@@ -8,6 +8,8 @@ class Mobility(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attribute using ConfigItem
+
+        # Optional BOOLEAN (false). Sets whether or not to start HO if neighbor cells become stronger. Supported: [false, true].
         self._trigger_handover_from_measurements = ConfigItem(
             key="trigger_handover_from_measurements",
             value=False,
@@ -18,6 +20,13 @@ class Mobility(CommonConfig):
         # Sub-configurations
         self._cells = Cells()
         self._report_configs = Report_configs()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._trigger_handover_from_measurements,
+            self._cells,
+            self._report_configs
+        ]
 
     # Getter and setter for ConfigItem
     @property

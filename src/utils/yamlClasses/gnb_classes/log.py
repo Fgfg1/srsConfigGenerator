@@ -1,191 +1,292 @@
 from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
+# All gNB layers and components can be configured independently to output at various levels of detail. Logs can be configured to the following levels (from lowest to highest levels of detail):
+# none, error, warning, info, debug
+
+# Future plans:
+# Make a default value for log level (change between none, error, warning, info, and bug)
+
 class Log(CommonConfig):
     def __init__(self, name="log", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional TEXT (/tmp/gnb.log). File path for logs. Logs can be redirected to stdout by setting the filename to "stdout".
         self._filename = ConfigItem(
             key="filename",
             value=None,
             comment="Log filename. If None, logs are output to console",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets a common log level across PHY, MAC, RLC, PDCP, RRC, SDAP, NGAP and GTPU layers.
         self._all_level = ConfigItem(
             key="all_level",
             value="warning",
             comment="Log level for all components",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the generic log level.
         self._lib_level = ConfigItem(
             key="lib_level",
             value="warning",
             comment="Log level for libraries",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the E2AP log level.
         self._e2ap_level = ConfigItem(
             key="e2ap_level",
             value="warning",
             comment="Log level for E2AP",
             used=False,
         )
+
+        # Optional TEXT (none). Sets the config log level.
         self._config_level = ConfigItem(
             key="config_level",
             value="none",
             comment="Log level for configuration changes",
             used=False,
         )
+
+        # Optional TEXT. Set to a valid file name to enable tracing log.
         self._tracing_filename = ConfigItem(
             key="tracing_filename",
             value=None,
             comment="Tracing log filename",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the RRC log level.
         self._rrc_level = ConfigItem(
             key="rrc_level",
             value="warning",
             comment="Log level for RRC",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets NGAP log level.
         self._ngap_level = ConfigItem(
             key="ngap_level",
             value="warning",
             comment="Log level for NGAP",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the security functions level.
         self._sec_level = ConfigItem(
             key="sec_level",
             value="warning",
             comment="Log level for security components",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the PDCP log level.
         self._pdcp_level = ConfigItem(
             key="pdcp_level",
             value="warning",
             comment="Log level for PDCP",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the SDAP log level.
         self._sdap_level = ConfigItem(
             key="sdap_level",
             value="warning",
             comment="Log level for SDAP",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the CU log level.
         self._cu_level = ConfigItem(
             key="cu_level",
             value="warning",
             comment="Log level for CU",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the MAC log level.
         self._mac_level = ConfigItem(
             key="mac_level",
             value="warning",
             comment="Log level for MAC",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the RLC log level.
         self._rlc_level = ConfigItem(
             key="rlc_level",
             value="warning",
             comment="Log level for RLC",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the F1AP log level.
         self._f1ap_level = ConfigItem(
             key="f1ap_level",
             value="warning",
             comment="Log level for F1AP",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the F1u log level.
         self._f1u_level = ConfigItem(
             key="f1u_level",
             value="warning",
             comment="Log level for F1U",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the GTPU log level.
         self._gtpu_level = ConfigItem(
             key="gtpu_level",
             value="warning",
             comment="Log level for GTPU",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the DU log level.
         self._du_level = ConfigItem(
             key="du_level",
             value="warning",
             comment="Log level for DU",
             used=False,
         )
+
+        # Optional TEXT (none). Sets the metrics log level.
         self._metrics_level = ConfigItem(
             key="metrics_level",
             value="none",
             comment="Log level for metrics",
             used=False,
         )
+
+        # Optional BOOLEAN (false). Enables the JSON logging of F1AP PDUs. Supported: [false, true].
         self._f1ap_json_enabled = ConfigItem(
             key="f1ap_json_enabled",
             value=False,
             comment="Enable JSON logging for F1AP",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets the HAL log level.
         self._hal_level = ConfigItem(
             key="hal_level",
             value="warning",
             comment="Log level for HAL",
             used=False,
         )
+
+        # Optional BOOLEAN (false). Enables logging in the PHY and MAC layer of broadcast messages and all PRACH opportunities. Supported: [false, true].
         self._broadcast_enabled = ConfigItem(
             key="broadcast_enabled",
             value=False,
             comment="Enable broadcast logs",
             used=False,
         )
+
+        # Optional TEXT. Print received symbols to file. Symbols will be printed if a valid path is set. Format: file path. This file can be used in the srsRAN_matlab project.
         self._phy_rx_symbols_filename = ConfigItem(
             key="phy_rx_symbols_filename",
             value=None,
             comment="Filename for PHY RX symbols logs",
             used=False,
         )
+
+        # Optional TEXT. Set to a valid receive port number to dump the IQ symbols from that port only, or set to "all" to dump the IQ symbols from all UL receive ports.
+        # Only works if "phy_rx_symbols_filename" is set. Supported: [NON-NEGATIVE or all].
         self._phy_rx_symbols_port = ConfigItem(
             key="phy_rx_symbols_port",
             value=0,
             comment="Port for PHY RX symbols logs",
             used=False,
         )
+
+        # Optional BOOLEAN (false). Set to true to dump the IQ symbols from all the PRACH ports. Only works if "phy_rx_symbols_filename" is set. Supported: [false, true].
         self._phy_rx_symbols_prach = ConfigItem(
             key="phy_rx_symbols_prach",
             value=False,
             comment="Enable PRACH symbols logging for PHY RX",
             used=False,
         )
+
+        # Optional UINT (0). Sets maximum number of bytes to print for hex messages. Supported: [0 - 1024]
         self._hex_max_size = ConfigItem(
             key="hex_max_size",
             value=0,
             comment="Maximum size for hex logs",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets FAPI log level.
         self._fapi_level = ConfigItem(
             key="fapi_level",
             value="warning",
             comment="Log level for FAPI",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets Open Fronthaul log level.
         self._ofh_level = ConfigItem(
             key="ofh_level",
             value="warning",
             comment="Log level for OFH",
             used=False,
         )
+
+        # Optional TEXT (info). Sets radio log level.
         self._radio_level = ConfigItem(
             key="radio_level",
             value="info",
             comment="Log level for radio components",
             used=False,
         )
+
+        # Optional TEXT (warning). Sets PHY log level.
         self._phy_level = ConfigItem(
             key="phy_level",
             value="warning",
             comment="Log level for PHY",
             used=False,
         )
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._filename,
+            self._all_level,
+            self._lib_level,
+            self._e2ap_level,
+            self._config_level,
+            self._tracing_filename,
+            self._rrc_level,
+            self._ngap_level,
+            self._sec_level,
+            self._pdcp_level,
+            self._sdap_level,
+            self._cu_level,
+            self._mac_level,
+            self._rlc_level,
+            self._f1ap_level,
+            self._f1u_level,
+            self._gtpu_level,
+            self._du_level,
+            self._metrics_level,
+            self._f1ap_json_enabled,
+            self._hal_level,
+            self._broadcast_enabled,
+            self._phy_rx_symbols_filename,
+            self._phy_rx_symbols_port,
+            self._phy_rx_symbols_prach,
+            self._hex_max_size,
+            self._fapi_level,
+            self._ofh_level,
+            self._radio_level,
+            self._phy_level
+        ]
 
     # Getters and setters for ConfigItems
     @property

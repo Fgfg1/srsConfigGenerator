@@ -44,11 +44,15 @@ class Gnb(CommonConfig):
         self._gnb_du_id = ConfigItem(
             key="gnb_du_id", value=0, comment="GNB DU ID", used=False
         )
+        
         # might be a class in the future
+        # example can be found https://github.com/srsran/srsRAN_Project/blob/main/configs/qos.yml
         self._qos = ConfigItem(
             key="qos", value=None, comment="Quality of Service configuration", used=False
         )
+        
         # might be a class in the future
+        # example can be found https://github.com/srsran/srsRAN_Project/blob/main/configs/srb.yml
         self._srbs = ConfigItem(
             key="srbs", value=None, comment="SRB configuration", used=False
         )
@@ -162,10 +166,4 @@ class Gnb(CommonConfig):
     def load_data(self, input:dict):
         """Takes dictionary input from pyyaml and inputs all data into gnb"""
         pass
-
-    def initalize_data(self):
-        """Uing the variabel list itterate through and add it to the """
-        for variable in self._variables:
-            if variable:
-                self._data.update(variable.get_data())
         

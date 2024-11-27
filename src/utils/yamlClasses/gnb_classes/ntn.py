@@ -9,12 +9,15 @@ class Ntn(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional INT (0). Sets the cell-specific k-offset to be used for NTN. Supported: [0 - 1023].
         self._cell_specific_koffset = ConfigItem(
             key="cell_specific_koffset",
             value=0,
             comment="Cell-specific offset K for NTN timing advance",
             used=False,
         )
+        # Optional UINT. Sets the TA common offset.
         self._ta_common = ConfigItem(
             key="ta_common",
             value=None,
@@ -26,6 +29,15 @@ class Ntn(CommonConfig):
         self._epoch_time = Epoch_time()
         self._ephemeris_info_ecef = Ephemeris_info_ecef()
         self._ephemeris_orbital = Ephemeris_orbital()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._cell_specific_koffset,
+            self._ta_common,
+            self._epoch_time,
+            self._ephemeris_info_ecef,
+            self._ephemeris_orbital
+        ]
 
     # Getters and setters for ConfigItems
     @property

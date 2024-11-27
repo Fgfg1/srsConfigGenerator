@@ -6,72 +6,109 @@ class Test_ue(CommonConfig):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem
+
+        # Optional ENUM (0). Sets the C-RNTI of the UE. Supported: [0 - 65519].
         self._rnti = ConfigItem(
             key="rnti",
             value=0,
             comment="RNTI for the test UE",
             used=False,
         )
+
+        # Optonal UINT (1). Sets the number of test UE(s) created. Supported [0 - 1024].
         self._nof_ues = ConfigItem(
             key="nof_ues",
             value=1,
             comment="Number of UEs in the test",
             used=False,
         )
+
+        # Optional TEXT. Sets the delay before the UL and DL HARQs are automatically ACKed. This feature should only be used if the UL PHY is not operational.
         self._auto_ack_indication_delay = ConfigItem(
             key="auto_ack_indication_delay",
             value=None,
             comment="Delay for automatic acknowledgment indication",
             used=False,
         )
+
+        # Optional BOOLEAN (true). Enables the PDSCH of the UE. Supported: [false, true].
         self._pdsch_active = ConfigItem(
             key="pdsch_active",
             value=True,
             comment="Indicates whether PDSCH is active",
             used=False,
         )
+
+        # Optional BOOLEAN (true). Enables the PUSCH of the UE. Supported: [false, true].
         self._pusch_active = ConfigItem(
             key="pusch_active",
             value=True,
             comment="Indicates whether PUSCH is active",
             used=False,
         )
+
+        # Optional UINT (15). Sets the Channel Quality Information to be forwarded to the test UE. Supported: [1 - 15].
         self._cqi = ConfigItem(
             key="cqi",
             value=15,
             comment="Channel Quality Indicator (CQI) value",
             used=False,
         )
+
+        # Optional UINT (0). Sets the Precoder Matrix Indicator to be forwarded to test UE. Supported: [0 - 3].
         self._pmi = ConfigItem(
             key="pmi",
             value=0,
             comment="Precoding Matrix Indicator (PMI) value",
             used=False,
         )
+
+        # Optional UINT (1). Sets the Rank Indicator to be forwarded to the test UE. Supported: [1 - 4].
         self._ri = ConfigItem(
             key="ri",
             value=1,
             comment="Rank Indicator (RI) value",
             used=False,
         )
+
+        # Optional INT (0). Sets the Precoder Matrix codebook index "i_1_1" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 7].
         self._i_1_1 = ConfigItem(
             key="i_1_1",
             value=0,
             comment="I_1_1 parameter value",
             used=False,
         )
+
+        # Optional INT (0). Sets the Precoder Matrix codebook index "i_1_3" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 1].
         self._i_1_3 = ConfigItem(
             key="i_1_3",
             value=0,
             comment="I_1_3 parameter value",
             used=False,
         )
+
+        # Optional INT (0). Sets the Precoder Matrix codebook index "i_2" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 3].
         self._i_2 = ConfigItem(
             key="i_2",
             value=0,
             comment="I_2 parameter value",
             used=False,
         )
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._rnti,
+            self._nof_ues,
+            self._auto_ack_indication_delay,
+            self._pdsch_active,
+            self._pusch_active,
+            self._cqi,
+            self._pmi,
+            self._ri,
+            self._i_1_1,
+            self._i_1_3,
+            self._i_2
+        ]
 
     # Getters and setters for ConfigItems
     @property
