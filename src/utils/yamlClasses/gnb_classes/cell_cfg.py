@@ -16,6 +16,9 @@ from .cell_cfg_classes.sched_expert_cfg import Sched_expert_cfg
 from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
+# TODO update with comments all classes and subclasses
+# TODO add variable list item for initalizer function in parent class
+
 class Cell_cfg(CommonConfig):
     def __init__(self, name="cell_cfg", data=None, used=False):
         super().__init__(name, data or {}, used)
