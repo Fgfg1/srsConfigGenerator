@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from tai_slice_support_list_data import TaiSliceSupportListData
+from .tai_slice_support_list_data import TaiSliceSupportListData
 
 class Tai_slice_support_list(CommonList):
     def __init__(self, name="tai_slice_support_list", data=None, used=False):

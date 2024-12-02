@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from supported_tracking_areas_data import Supported_tracking_areas_data
+from .supported_tracking_areas_data import Supported_tracking_areas_data
 
 # Required TEXT. Sets the list of tracking areas supported by this AMF.
 

@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from plmn_list_data import PlmnListData
+from .plmn_list_data import PlmnListData
 
 class PlmnList(CommonList):
     def __init__(self, name="plmn_list", data=None, used=True):

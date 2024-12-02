@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from cell_affinities_data import CellAffData
+from .cell_affinities_data import CellAffData
 
 # Optional TEXT. Sets the cell CPU affinities configuration on a per cell basis. Entry order is the same as the order in the defined cell list.
 

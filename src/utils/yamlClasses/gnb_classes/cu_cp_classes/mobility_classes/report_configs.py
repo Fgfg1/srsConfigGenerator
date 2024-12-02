@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from report_configs_data import Report_configs_data
+from .report_configs_data import Report_configs_data
 
 # Optional TEXT. Sets the list of report configurations to dynamically build a measurement configuration sent to the UEs using the below values.
 

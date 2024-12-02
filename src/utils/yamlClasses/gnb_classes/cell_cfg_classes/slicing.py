@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from slicing_data import SlicingData
+from .slicing_data import SlicingData
 
 class Slicing(CommonList):
     def __init__(self, name="slicing", data=None, used=False):

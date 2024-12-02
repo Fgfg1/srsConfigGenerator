@@ -1,5 +1,5 @@
 from src.utils.yamlClasses.common_list import CommonList
-from cells_data import CellsData
+from .cells_data import CellsData
 
 class Cells(CommonList):
     """
