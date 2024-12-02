@@ -166,4 +166,8 @@ class Gnb(CommonConfig):
     def load_data(self, input:dict):
         """Takes dictionary input from pyyaml and inputs all data into gnb"""
         pass
+
+    def test_full_config(self,):
+        pass
+
         

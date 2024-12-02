@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class TaiSliceSupportListData(CommonConfig):
-    def __init__(self, name=None, data=None, used=False):
+    def __init__(self, name=None, data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

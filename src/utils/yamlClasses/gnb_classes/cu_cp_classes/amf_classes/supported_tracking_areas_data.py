@@ -3,7 +3,7 @@ from src.utils.yamlClasses.common_conf import CommonConfig
 from .supported_tracking_areas_classes.plmn_list import PlmnList
 
 class Supported_tracking_areas_data(CommonConfig):
-    def __init__(self, name=None, data=None, used=False):
+    def __init__(self, name=None, data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

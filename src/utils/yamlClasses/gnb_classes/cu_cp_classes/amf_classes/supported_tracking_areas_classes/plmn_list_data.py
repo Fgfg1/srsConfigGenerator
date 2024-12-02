@@ -3,7 +3,7 @@ from src.utils.yamlClasses.common_conf import CommonConfig
 from .plmn_list_classes.tai_slice_support_list import Tai_slice_support_list
 
 class PlmnListData(CommonConfig):
-    def __init__(self, name=None, data=None, used=False):
+    def __init__(self, name=None, data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

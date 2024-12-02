@@ -9,6 +9,7 @@
     I am using pyyaml to create the documents and it works really well with a dict.
     All data will be stored in a dictionary.
 """
+
 class CommonConfig:
     def __init__(self, name=None, data:dict = {}, used = False, variables:list = []):  
         '''
@@ -48,9 +49,12 @@ class CommonConfig:
     def set_used(self, used: bool): 
         self._used = used
 
-    def initalize_data(self):
+    def initialize_data(self):
         """Uing the variabel list itterate through and add it to _data"""
         for variable in self._variables:
             # if the variable is used then add it to the _data
             if variable.is_used():
+                # if the variable is a CommonConfig item or sublcass then call initalize data
+                if isinstance(variable, CommonConfig):
+                    variable.initialize_data()
                 self._data.update(variable.get_data())

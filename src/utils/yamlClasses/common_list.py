@@ -16,6 +16,8 @@ class CommonList(CommonConfig):
         data_list = []
         if self._used:
             for item in self._items:
+                if isinstance(item, CommonConfig):
+                    item.initialize_data()
                 # Append the item's data to the list, calling get_data(True)
                 data_list.append(item.get_data(True))
         

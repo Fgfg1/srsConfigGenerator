@@ -4,7 +4,7 @@ from .supported_tracking_areas_data import Supported_tracking_areas_data
 # Required TEXT. Sets the list of tracking areas supported by this AMF.
 
 class Supported_tracking_areas(CommonList):
-    def __init__(self, name="supported_tracking_areas", data=None, used=False):
+    def __init__(self, name="supported_tracking_areas", data=None, used=True):
         super().__init__(name, data or {}, used)
 
         #add inital item to list
