@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Epoch_time(CommonConfig):
-    def __init__(self, name="EpochTimeConfig", data=None, used=False):
+    def __init__(self, name="epoch_time", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

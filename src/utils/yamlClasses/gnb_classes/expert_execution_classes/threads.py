@@ -5,7 +5,7 @@ from .threads_classes.ofh import Ofh
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Threads(CommonConfig):
-    def __init__(self, name="ThreadsConfig", data=None, used=False):
+    def __init__(self, name="threads", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Sub-configurations

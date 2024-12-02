@@ -3,7 +3,7 @@ from src.utils.yamlClasses.common_conf import CommonConfig
 from .amf_classes.supported_tracking_areas import Supported_tracking_areas
 
 class Amf(CommonConfig):
-    def __init__(self, name="AmfConfig", data=None, used=True):
+    def __init__(self, name="amf", data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

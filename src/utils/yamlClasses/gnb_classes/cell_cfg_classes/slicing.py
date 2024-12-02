@@ -1,41 +1,19 @@
-from src.utils.yamlClasses.config_item import ConfigItem
-from src.utils.yamlClasses.common_conf import CommonConfig
-from .slicing_classes.sched_cfg import Sched_cfg
+from src.utils.yamlClasses.common_list import CommonList
+from slicing_data import SlicingData
 
-class Slicing(CommonConfig):
-    def __init__(self, name="SlicingConfig", data=None, used=False):
+class Slicing(CommonList):
+    def __init__(self, name="slicing", data=None, used=False):
         super().__init__(name, data or {}, used)
 
-        # Configurable attributes using ConfigItem
-        self._sst = ConfigItem(
-            key="sst",
-            value=1,
-            comment="Slice/Service Type (SST) identifier",
-            used=False,
-        )
-        self._sd = ConfigItem(
-            key="sd",
-            value=0,
-            comment="Slice Differentiator (SD) identifier",
-            used=False,
-        )
+        
+        # add inital item to slicing data
+        # adding default configuration for Slice 1
+        self.add_item(SlicingData())
 
-        # Sub-configuration
-        self._sched_cfg = Sched_cfg()
+    
+    # Add managment functions to create delete and edit item list.
 
-    # Getters and setters for ConfigItems
-    @property
-    def sst(self):
-        return self._sst.value
-
-    @sst.setter
-    def sst(self, value):
-        self._sst.set_value(value)
-
-    @property
-    def sd(self):
-        return self._sd.value
-
-    @sd.setter
-    def sd(self, value):
-        self._sd.set_value(value)
+    # TODO add deffinition to this
+    def add_slice(self):
+        """Takes SlicingData info to add to Slice List"""
+        pass

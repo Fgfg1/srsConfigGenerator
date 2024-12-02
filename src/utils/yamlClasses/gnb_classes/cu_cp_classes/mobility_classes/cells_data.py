@@ -5,7 +5,7 @@ from .cells_classes.ncells import Ncells
  # Optional TEXT. Sets the list of cells known to the CU-CP, their configs (if not provided over F1) and their respective neighbor cells.
 
 class CellsData(CommonConfig):
-    def __init__(self, name="CellsConfig", data=None, used=False):
+    def __init__(self, name=None, data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

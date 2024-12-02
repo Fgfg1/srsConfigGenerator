@@ -3,24 +3,30 @@ from .pdcch_classes.common import Common
 from .pdcch_classes.dedicated import Dedicated
 
 class Pdcch(CommonConfig):
-    def __init__(self, name="PdcchConfig", data=None, used=False):
+    def __init__(self, name="pdcch", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Sub-configurations
-        self.__common = Common()
-        self.__dedicated = Dedicated()
+        self._common = Common()
+        self._dedicated = Dedicated()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._common,
+            self._dedicated
+        ]
 
     # Getters and setters for 'common' sub-configuration
     @property
     def common(self):
         """Access the common PDCCH configuration."""
-        return self.__common
+        return self._common
 
     @common.setter
     def common(self, value):
         """Set the common PDCCH configuration."""
         if isinstance(value, Common):
-            self.__common = value
+            self._common = value
         else:
             raise ValueError("common must be an instance of Common.")
 
@@ -28,13 +34,13 @@ class Pdcch(CommonConfig):
     @property
     def dedicated(self):
         """Access the dedicated PDCCH configuration."""
-        return self.__dedicated
+        return self._dedicated
 
     @dedicated.setter
     def dedicated(self, value):
         """Set the dedicated PDCCH configuration."""
         if isinstance(value, Dedicated):
-            self.__dedicated = value
+            self._dedicated = value
         else:
             raise ValueError("dedicated must be an instance of Dedicated.")
 
@@ -55,8 +61,8 @@ class Pdcch(CommonConfig):
 
     def reset_common_config(self):
         """Reset the common configuration to a new instance."""
-        self.__common = Common()
+        self._common = Common()
 
     def reset_dedicated_config(self):
         """Reset the dedicated configuration to a new instance."""
-        self.__dedicated = Dedicated()
+        self._dedicated = Dedicated()

@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Non_rt(CommonConfig):
-    def __init__(self, name="NonRtConfig", data=None, used=False):
+    def __init__(self, name="non_rt", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attribute using ConfigItem

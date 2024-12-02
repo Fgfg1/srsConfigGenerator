@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Amplitude_control(CommonConfig):
-    def __init__(self, name="AmplitudeControlConfig", data=None, used=False):
+    def __init__(self, name="amplitude_control", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

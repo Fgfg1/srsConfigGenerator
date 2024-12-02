@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Ncells(CommonConfig):
-    def __init__(self, name="NcellsConfig", data=None, used=True):
+    def __init__(self, name="ncells", data=None, used=True):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

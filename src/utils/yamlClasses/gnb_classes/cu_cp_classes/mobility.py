@@ -4,7 +4,7 @@ from .mobility_classes.cells import Cells
 from .mobility_classes.report_configs import Report_configs
 
 class Mobility(CommonConfig):
-    def __init__(self, name="MobilityConfig", data=None, used=False):
+    def __init__(self, name="mobility", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attribute using ConfigItem

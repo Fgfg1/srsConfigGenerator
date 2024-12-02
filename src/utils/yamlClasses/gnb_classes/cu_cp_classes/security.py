@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Security(CommonConfig):
-    def __init__(self, name="SecurityConfig", data=None, used=False):
+    def __init__(self, name="security", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

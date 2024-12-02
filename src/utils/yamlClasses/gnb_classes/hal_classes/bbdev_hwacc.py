@@ -4,7 +4,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Bbdev_hwacc(CommonConfig):
-    def __init__(self, name="BbdevHwaccConfig", data=None, used=False):
+    def __init__(self, name="bbdev_hwacc", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Expert_cfg(CommonConfig):
-    def __init__(self, name="ExpertCfgConfig", data=None, used=False):
+    def __init__(self, name="expert_cfg", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

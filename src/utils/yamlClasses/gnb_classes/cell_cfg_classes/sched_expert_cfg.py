@@ -4,12 +4,18 @@ from .sched_expert_cfg_classes.policy_sched_cfg import Policy_sched_cfg
 from .sched_expert_cfg_classes.ta_sched_cfg import Ta_sched_cfg
 
 class Sched_expert_cfg(CommonConfig):
-    def __init__(self, name="SchedExpertCfgConfig", data=None, used=False):
+    def __init__(self, name="sched_expert_cfg", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Sub-configurations
         self._policy_sched_cfg = Policy_sched_cfg()
         self._ta_sched_cfg = Ta_sched_cfg()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self._policy_sched_cfg,
+            self._ta_sched_cfg
+        ]
 
     # Add getters and setters for sub-configurations if needed
     @property

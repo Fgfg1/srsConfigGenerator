@@ -7,7 +7,7 @@ This is the creator of all cells info and everything should relate back to this.
 '''
 
 class Cells(CommonList):
-    def __init__(self, name="CellsConfig", data=None, used=False):
+    def __init__(self, name="cells", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # provide inital data in items list

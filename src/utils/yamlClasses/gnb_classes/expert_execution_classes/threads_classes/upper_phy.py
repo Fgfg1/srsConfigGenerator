@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Upper_phy(CommonConfig):
-    def __init__(self, name="UpperPhyConfig", data=None, used=False):
+    def __init__(self, name="upper_phy", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

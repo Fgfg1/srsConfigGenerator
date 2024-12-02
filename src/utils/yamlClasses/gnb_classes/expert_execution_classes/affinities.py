@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Affinities(CommonConfig):
-    def __init__(self, name="AffinitiesConfig", data=None, used=False):
+    def __init__(self, name="affinities", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

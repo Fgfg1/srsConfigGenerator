@@ -2,7 +2,7 @@ from src.utils.yamlClasses.config_item import ConfigItem
 from src.utils.yamlClasses.common_conf import CommonConfig
 
 class Ephemeris_info_ecef(CommonConfig):
-    def __init__(self, name="EphemerisInfoECEFConfig", data=None, used=False):
+    def __init__(self, name="ephemeris_info_ecef", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Configurable attributes using ConfigItem

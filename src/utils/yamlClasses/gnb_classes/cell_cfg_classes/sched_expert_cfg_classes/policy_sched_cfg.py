@@ -2,11 +2,16 @@ from src.utils.yamlClasses.common_conf import CommonConfig
 from .policy_sched_cfg_classes.pf_sched import Pf_sched
 
 class Policy_sched_cfg(CommonConfig):
-    def __init__(self, name="PolicySchedConfig", data=None, used=False):
+    def __init__(self, name="policy_sched_cfg", data=None, used=False):
         super().__init__(name, data or {}, used)
 
         # Sub-configuration for PF scheduling
         self.__pf_sched = Pf_sched()
+
+        # List of all variables in the order that it shows up in the config file
+        self._variables = [
+            self.__pf_sched
+        ]
 
     # Getter and setter for the Pf_sched configuration
     @property
